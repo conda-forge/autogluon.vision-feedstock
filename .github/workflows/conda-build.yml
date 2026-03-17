@@ -2,6 +2,14 @@
 # update the conda-forge.yml and/or the recipe/meta.yaml.
 # -*- mode: yaml -*-
 
+name: Build conda package
+on:
+  workflow_dispatch:
+
 jobs:
-  - template: ./.azure-pipelines/azure-pipelines-linux.yml
-  - template: ./.azure-pipelines/azure-pipelines-osx.yml
+  build:
+    name: Disabled build
+    runs-on: ubuntu-slim
+    if: false
+    steps:
+    - run: exit 0
