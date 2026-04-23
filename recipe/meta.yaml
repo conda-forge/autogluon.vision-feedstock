@@ -10,12 +10,12 @@ source:
   sha256: 96075e9bfce79420fe78a5566a1ba82f9a80598e955f4a4fc490f5561ede70bd
 
 build:
-  skip: True  # [win]
-  skip: True  # [py>=310]
+  skip: true  # [win]
+  skip: true  # [py>=310]
   script: {{ PYTHON }} -m pip install ./vision -vv
-  number: 1
+  number: 2
   script_env:
-   - RELEASE=1
+    - RELEASE=1
 
 requirements:
   build:
@@ -24,16 +24,11 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - numpy  <1.24,>=1.21                    # [build_platform != target_platform]
     # Fixed missing libGL.so.1 error. See https://conda-forge.org/docs/maintainer/knowledge_base.html#libgl
-    - {{ cdt('mesa-libgl-devel') }}  # [linux]
-    - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('libselinux') }}  # [linux]
-    - {{ cdt('libxdamage') }}  # [linux]
-    - {{ cdt('libxxf86vm') }}  # [linux]
-    - {{ cdt('libxext') }}     # [linux]
   host:
-    - python 
+    - python
     - pip
     - xorg-libxfixes  # [linux]
+    - libgl-devel                    # [linux]
   run:
     - python
     - numpy <1.24,>=1.21
